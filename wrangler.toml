@@ -1,28 +1,8 @@
-# wrangler.toml
-# 适用于纯静态站点（Assets-only），通过 `wrangler deploy --assets=./dist` 部署
-
+# wrangler.toml —— 纯静态站点（推荐：Assets 模式）
 name = "tangpoet"
-compatibility_date = "2025-12-12"   # ✅ 必须字段！建议每季度更新为当前日期
-# compatibility_flags = []         # 如需启用实验性特性可在此添加，一般留空
+compatibility_date = "2025-12-12"
 
-# 启用静态资源托管（Assets）
+# ✅ 使用 [assets]（现代方式），不要用 [site]
 [assets]
-directory = "./dist"      # 构建产物目录（Vite 默认为 dist）
-binding = "ASSETS"        # 绑定名（Worker 中可通过 env.ASSETS 访问，纯静态站点可忽略）
-
-# 可选：自定义路由/回退行为（例如 SPA 支持）
-# [[routes]]
-# pattern = "tangpoet.pages.dev/*"
-# zone_name = ""   # 若绑定自定义域名可填写
-
-# 可选：SPA 回退到 index.html（防止直接访问 /about 等路径 404）
-[site]
-# 注意：`[site]` 与 `[assets]` 互斥，现代项目推荐用 `[assets]`
-# 若用 [site]，则需指定 `bucket = "./dist"`，但功能较旧
-
-# 更推荐用 Workers 自定义回退（可选进阶）
-# [placement]
-# mode = "smart"
-
-# [vars]
-# PUBLIC_API_URL = "https://api.example.com"
+directory = "./dist"   # 构建产物路径
+binding = "ASSETS"     # 可选，纯静态站点可省略 binding，但保留无害
