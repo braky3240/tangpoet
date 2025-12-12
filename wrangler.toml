@@ -1,8 +1,7 @@
-# wrangler.toml —— 纯静态站点（推荐：Assets 模式）
+# wrangler.toml —— 纯静态站点（Assets-only，无 Worker）
 name = "tangpoet"
 compatibility_date = "2025-12-12"
 
-# ✅ 使用 [assets]（现代方式），不要用 [site]
 [assets]
-directory = "./dist"   # 构建产物路径
-binding = "ASSETS"     # 可选，纯静态站点可省略 binding，但保留无害
+directory = "./dist"
+# ⚠️ 不要写 binding！纯静态站点必须省略 binding
